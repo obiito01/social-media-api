@@ -20,6 +20,27 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//get followings
+router.get("/:id/followings", async (req, res) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const friends = await Promise.all(
+      user.followings.map((friendId) => {
+        return User.findById(friendId);
+      })
+    );
+    let friendList = [];
+    friends.map((friend) => {
+      const { _id, username, fullname, profilePicture } = friend;
+      friendList.push({ _id, username, fullname, profilePicture });
+    });
+
+    res.status(200).json(friendList);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // delete user
 router.delete("/:id", async (req, res) => {
   try {

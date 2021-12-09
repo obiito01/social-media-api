@@ -10,6 +10,11 @@ const UserSchema = mongoose.Schema(
       maxLength: 20,
       trim: true,
     },
+    fullname: {
+      type: String,
+      required: true,
+      trim: true,
+    },
     email: {
       type: String,
       required: true,
@@ -29,15 +34,15 @@ const UserSchema = mongoose.Schema(
     },
     city: {
       type: String,
-      maxLength: 50,
-    },
-    from: {
-      type: String,
-      maxLength: 50,
+      trim: true,
     },
     relationship: {
-      type: Number,
-      enum: [1, 2, 3],
+      type: String,
+      enum: ["Single", "Married", "Complicated"],
+    },
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Others"],
     },
   },
   { timestamps: true }
