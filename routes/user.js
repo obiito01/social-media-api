@@ -1,9 +1,6 @@
 const router = require("express").Router();
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
-router.get("/", (req, res) => {
-  res.json("this is user route");
-});
 
 //get a user
 router.get("/:id", async (req, res) => {
